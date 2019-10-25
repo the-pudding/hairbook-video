@@ -1,0 +1,109 @@
+/* CUSTOM STORY STYLE */
+#yearbook_photos
+	width 1820px
+	height 980px
+	position absolute
+	display flex
+	align-items center
+
+	.chart-label
+		position absolute
+		display flex
+		flex-direction row
+
+		p
+			font-family $courier
+			font-weight 700
+			set-type-size('x-large', true)
+			margin 0
+			padding 0
+			color $off-black
+
+		svg
+			margin-top 4px
+
+	.top-label-female
+		top 90px
+		left 0
+		opacity 0
+
+	.bottom-label-female
+		bottom 100px
+		right 25px
+		opacity 0
+
+	.top-label-male
+		top 90px
+		left 0
+		opacity 0
+
+	.bottom-label-male
+		bottom 100px
+		right 25px
+		opacity 0
+
+	.photo__text
+		position absolute
+		top 50%
+		left 50%
+		transform translate(-50%, -50%)
+		width 1000px
+
+		p
+			font-family $cooper
+			font-weight 700
+			margin 0
+			set-type-size('xxxx-large', true)
+			line-height 1.2
+			opacity 0
+			color $off-black
+
+			span
+				opacity 0
+
+	figure
+		position relative
+		width 1820px
+		height 980px
+
+		.photo-wrapper
+			width 1820px
+			height 980px
+			position absolute
+
+			.photoDiv
+				display flex
+				flex-direction row
+				flex-wrap wrap
+				position absolute
+				height 120px
+				width 120px
+				opacity 0
+
+				.decadeLabel
+					position absolute
+					left 0
+					bottom 0
+					padding 0.25rem 0.5rem
+					background-color $hb-paper
+					z-index set-index('overlay')
+					display none
+					opacity 0
+
+				.visible-decade
+					display inline-block
+
+					p
+						margin 0
+						font-family $courier
+						font-weight 700
+						set-type-size('medium', true)
+						color $off-black
+
+				.female-photo, .male-photo
+					height 120px
+					width 120px
+
+					img
+						height 110px
+						width 110px

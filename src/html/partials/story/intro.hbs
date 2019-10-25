@@ -1,0 +1,66 @@
+<div class='intro__lines'>
+	<img inline src='intro-lines.svg'>
+</div>
+<section id='intro'>
+	<h1 class='intro__hed'>{{meta.title}}</h1>
+	<div class='intro__byline'>
+		<p>Data & story by {{meta.author1.name}} <br>
+		Design & development by {{meta.author2.name}} <br>
+		Sound design by Peter Champelli
+		</p>
+	</div>
+	<div class='photo1'>
+		<div class='photo1__img photoImg'>
+			<img src='./assets/images/avgs_decade/1940_female_7.png'>
+		</div>
+		<div class='photo1__color photoColor'></div>
+	</div>
+	<div class='photo2'>
+		<div class='photo2__img photoImg'>
+			<img src='./assets/images/avgs_decade/1930_female_8.png'>
+		</div>
+	</div>
+	<div class='photo3'>
+		<div class='photo3__img photoImg'>
+			<img src='./assets/images/avgs_decade/1940_male_3.png'>
+		</div>
+		<div class='photo3__color photoColor'></div>
+	</div>
+	<div class='photo4'>
+		<div class='photo4__img photoImg'>
+			<img src='./assets/images/avgs_decade/1970_female_6.png'>
+		</div>
+	</div>
+	<div class='photo5'>
+		<div class='photo5__img photoImg'>
+			<img src='./assets/images/avgs_decade/2000_male_9.png'>
+		</div>
+	</div>
+	<div class='photo6'>
+		<div class='photo6__img photoImg'>
+			<img src='./assets/images/avgs_decade/1990_male_6.png'>
+		</div>
+		<div class='photo6__color photoColor'></div>
+	</div>
+	<div class='photo7'>
+		<div class='photo7__img photoImg'>
+			<img src='./assets/images/avgs_decade/1980_female_7.png'>
+		</div>
+		<div class='photo7__color photoColor'></div>
+	</div>
+	<div class='photo8'>
+		<div class='photo8__img photoImg'>
+			<img src='./assets/images/avgs_decade/2000_male_5.png'>
+		</div>
+	</div>
+	<div class='intro__text' id='method1'>
+		{{#each copy.introMethod1}}
+			<p>{{{value}}}</p>
+		{{/each}}
+	</div>
+	<div class='intro__text' id='method2'>
+		{{#each copy.introMethod2}}
+			<p>{{{value}}}</p>
+		{{/each}}
+	</div>
+</section>

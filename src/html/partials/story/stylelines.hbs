@@ -1,0 +1,50 @@
+<section id='stylelines'>
+	<div class='block-container'>
+		<div class='style-block' id='beehive'>
+			<p class='style-name'>Beehive</p>
+			<img src='./assets/images/styles/beehive.png'>
+			<figure></figure>
+		</div>
+		<div class='style-block' id='mullet'>
+			<p class='style-name'>Mullet</p>
+			<img src='./assets/images/styles/mullet.png'>
+			<figure></figure>
+		</div>
+		<div class='style-block' id='longstraight'>
+			<p class='style-name'>Long straight</p>
+			<img src='./assets/images/styles/longstraight.png'>
+			<figure></figure>
+		</div>
+	</div>
+	<div class='dim-labels'>
+		<p class='dim1'>Face framing</p>
+		<p class='dim2'>Volume</p>
+		<p class='dim3'>Assymetry</p>
+		<p class='dim4'>Growth</p>
+	</div>
+	<div class='style__text' id='styleText1'>
+		{{#each copy.styleText1}}
+			<p>{{{value}}}</p>
+		{{/each}}
+	</div>
+	<div class='style__text' id='styleText2'>
+		{{#each copy.styleText2}}
+			<p>{{{value}}}</p>
+		{{/each}}
+	</div>
+	<div class='chart__text' id='beehiveText'>
+		{{#each copy.beehiveText}}
+			<p>{{{value}}}</p>
+		{{/each}}
+	</div>
+	<div class='chart__text' id='mulletText'>
+		{{#each copy.mulletText}}
+			<p>{{{value}}}</p>
+		{{/each}}
+	</div>
+	<div class='chart__text' id='longstraightText'>
+		{{#each copy.straightText}}
+			<p>{{{value}}}</p>
+		{{/each}}
+	</div>
+</section>

@@ -1,0 +1,18 @@
+{
+	"title": "The big data of big hair",
+	"description": "Sentence case dek goes down here. Modify these in data/meta.json.",
+	"site": "https://pudding.cool",
+	"siteName": "The Pudding",
+	"url": "https://pudding.cool/year/month/name/",
+	"keywords": "tk",
+	"imgFacebook": "https://pudding.cool/year/month/name/assets/social/social-facebook.jpg",
+	"imgTwitter": "https://pudding.cool/year/month/name/assets/social/social-twitter.jpg",
+	"author1": {
+		"name": "Elle O'Brien"
+	},
+	"author2": {
+		"name": "Jan Diehm"
+	},
+	"analytics": "",
+	"lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis neque sit amet sollicitudin vehicula. Maecenas fringilla mi non lacus mattis elementum. Curabitur dignissim faucibus justo."
+}

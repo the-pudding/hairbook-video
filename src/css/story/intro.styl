@@ -1,0 +1,183 @@
+.intro__lines
+	position absolute
+	width 1920px
+	height 1080px
+	top 0
+	left 0
+	z-index set-index('overlay')
+
+	svg
+		path
+			opacity 0
+			stroke-width 1px
+			stroke $off-black
+
+#intro
+	width 1820px
+	height 980px
+	position absolute
+	display flex
+	align-items center
+
+	.photoColor, .photoImg
+		opacity 0
+
+	.intro__hed
+		font-family $cooper
+		font-size 140px
+		margin 0
+		line-height 1
+		width 900px
+		position absolute
+		top 280px
+		left 380px
+		opacity 0
+		color $off-black
+
+		span
+			opacity 0
+
+	.intro__byline
+		position absolute
+		top 630px
+		left 730px
+
+		span
+			opacity 0
+
+		p
+			font-family $courier
+			font-weight 700
+			margin 0
+			set-type-size('x-large', true)
+			line-height 1.2
+			opacity 0
+			color $off-black
+
+	.intro__text
+		position absolute
+		top 50%
+		left 50%
+		transform translate(-50%, -50%)
+		width 900px
+
+		p
+			font-family $cooper
+			font-weight 700
+			margin 0
+			set-type-size('xxxx-large', true)
+			line-height 1.2
+			opacity 0
+			color $off-black
+
+			span
+				opacity 0
+
+	.photo1
+		position absolute
+		top 250px
+		left 0
+
+		&__img
+			width 110px
+			position absolute
+			left 120px
+
+		&__color
+			width 50px
+			height 50px
+			background-color $hb-yellow
+			position absolute
+			top 110px
+			left 70px
+
+	.photo2
+		position absolute
+		top 128px
+		left 840px
+
+		&__img
+			width 110px
+			position absolute
+
+	.photo3
+		position absolute
+		top 128px
+		left 1320px
+
+		&__img
+			width 110px
+			position absolute
+			left 120px
+
+		&__color
+			width 50px
+			height 50px
+			background-color $hb-red
+			position absolute
+			top 60px
+			left 230px
+
+	.photo4
+		position absolute
+		top 490px
+		left 0
+
+		&__img
+			width 110px
+			position absolute
+
+	.photo5
+		position absolute
+		top 730px
+		left 360px
+
+		&__img
+			width 110px
+			position absolute
+
+	.photo6
+		position absolute
+		top 611px
+		left 550px
+
+		&__img
+			width 110px
+			position absolute
+			left 50px
+
+		&__color
+			width 50px
+			height 50px
+			background-color $hb-green
+			position absolute
+			top 60px
+
+	.photo7
+		position absolute
+		top 490px
+		left 1270px
+
+		&__img
+			width 110px
+			position absolute
+			left 50px
+
+		&__color
+			width 50px
+			height 50px
+			background-color $hb-blue
+			position absolute
+			top 110px
+
+	.photo8
+		position absolute
+		top 611px
+		left 1680px
+
+		&__img
+			width 110px
+			position absolute
+
+.st0
+	//stroke-dasharray 0

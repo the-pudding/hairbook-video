@@ -1,0 +1,29 @@
+<section id='yearbook_photos'>
+	<div class='chart-label top-label-female'>
+		<img inline src='arrow-left.svg'>
+		<p>1930</p>
+	</div>
+	<div class='chart-label top-label-male'>
+		<img inline src='arrow-left.svg'>
+		<p>1930</p>
+	</div>
+	<div class='chart-label bottom-label-female'>
+		<p>2013</p>
+		<img inline src='arrow-right.svg'>
+	</div>
+	<div class='chart-label bottom-label-male'>
+		<p>2013</p>
+		<img inline src='arrow-right.svg'>
+	</div>
+	<figure></figure>
+	<div class='photo__text' id='avgGridText1'>
+		{{#each copy.avgGridText1}}
+			<p>{{{value}}}</p>
+		{{/each}}
+	</div>
+	<div class='photo__text' id='avgGridText2'>
+		{{#each copy.avgGridText2}}
+			<p>{{{value}}}</p>
+		{{/each}}
+	</div>
+</section>

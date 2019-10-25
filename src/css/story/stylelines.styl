@@ -1,0 +1,204 @@
+/* CUSTOM STORY STYLE */
+#stylelines
+	position absolute
+	width 1920px
+	height 1080px
+	top 0
+	left 0
+	z-index set-index('overlay')
+
+	.style__text
+		position absolute
+		top 50%
+		left 50%
+		transform translate(-50%, -50%)
+		width 900px
+
+		p
+			font-family $cooper
+			font-weight 700
+			margin 0
+			set-type-size('xxxx-large', true)
+			line-height 1.2
+			opacity 0
+			color $off-black
+
+			span
+				opacity 0
+
+	#beehiveText
+		position absolute
+		top 225px
+		right 875px
+		opacity 0
+
+	#mulletText
+		position absolute
+		top 515px
+		right 500px
+		opacity 0
+
+	#longstraightText
+		position absolute
+		top 820px
+		right 100px
+		opacity 0
+
+	.chart__text
+		width 300px
+
+		p
+			font-family $cooper
+			font-weight 700
+			margin 0
+			set-type-size('xx-large', true)
+			line-height 1.2
+			color $off-black
+			//opacity 0
+
+			span
+				opacity 0
+
+	.dim-labels
+		width 1820px
+		position absolute
+		bottom 117px
+		display flex
+		//height 20px
+
+		p
+			font-family $courier
+			font-weight 700
+			text-align center
+			set-type-size('x-large', true)
+			margin 0
+			opacity 0
+			color $off-black
+
+		.dim1
+			position absolute
+			right 1145px
+
+		.dim2
+			position absolute
+			right 802px
+
+		.dim3
+			position absolute
+			right 385px
+
+		.dim4
+			position absolute
+			right 13px
+
+	.block-container
+		position absolute
+		top 50px
+		left 50px
+		width 1820px
+		height 980px
+		margin 50px auto
+		display flex
+		flex-direction column
+		justify-content flex-start
+
+		.style-block
+			width 100%
+			margin-bottom 50px
+			display flex
+			flex-direction row
+			align-items center
+
+			p
+				font-family $cooper
+				set-type-size('xx-large', true)
+				padding-right 20px
+				width 150px
+				text-align right
+				opacity 0
+				color $off-black
+
+			img
+				width 250px
+				height 250px
+				opacity 0
+
+			figure
+				width calc(100% - 500px)
+				height 250px
+				padding-left 100px
+				padding-right 100px
+
+//CHART
+.domain
+	display none
+
+.g-vis-line
+	.dimLine
+		stroke $off-black
+		stroke-width 5px
+		fill none
+		opacity 0
+
+	.styleLine
+		stroke $hb-purple
+		stroke-width 5px
+		fill none
+		opacity 0
+
+.x.axis
+
+	.tick
+		line
+			opacity 0
+			stroke $hb-tan
+			stroke-dasharray 2
+		text
+			font-family $courier
+			font-weight 700
+			set-type-size('large', true)
+			fill $off-black
+
+.y.axis
+
+	.tick
+		line
+			display none
+			stroke $hb-tan
+			stroke-dasharray 2
+		text
+			display none
+			fill $off-black
+
+#mullet, #beehive
+	.x.axis
+		.tick
+			text
+				display none
+				fill $off-black
+
+#longstraight
+	.x.axis
+		.tick
+			text
+				opacity 0
+				fill $off-black
+
+.circle
+	opacity 0
+
+.circle-0, .circle-1, .circle-2, .circle-3
+		stroke $hb-paper
+		stroke-width 3px
+
+.circle-0
+	fill $hb-yellow
+
+.circle-1
+	fill $hb-red
+
+.circle-2
+	fill $hb-green
+
+.circle-3
+	fill $hb-blue

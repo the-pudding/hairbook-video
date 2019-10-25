@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang='en' data-version='{{timestamp}}'>
+
+<head>
+
+	{{> base/meta}}
+
+	<link inline rel='stylesheet' href='bundle.css' />
+	<link rel="stylesheet" href="https://use.typekit.net/hbu4hhn.css">
+
+	{{> base/font}}
+
+
+	<script inline src='head.js'></script>
+
+	{{> base/analytics }}
+
+</head>
+
+<body>
+
+	<main id='content'>
+		{{> story/texture }}
+		{{> story/intro }}
+		{{> story/hair_dimensions }}
+		{{> story/stylelines }}
+		{{> story/yearbook_photos }}
+		{{> story/trendlines }}
+		{{> story/outro }}
+	</main>
+
+
+	<script src='{{basepath}}assets/scripts/d3.v5.9.1.min.js'></script>
+	<script src='main.js?version={{timestamp}}' async></script>
+</body>
+
+</html>

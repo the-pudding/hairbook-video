@@ -1,0 +1,206 @@
+/* CUSTOM STORY STYLE */
+#trendlines
+	width 1920px
+	height 1080px
+	position absolute
+	top 0
+	left 0
+	//display none
+
+	#trendNote1
+		.wrapper
+			top 440px
+
+		.img-container
+			order 2
+
+		p
+			order 1
+			color $off-black
+
+	#trendNote2
+		.wrapper
+			top 140px
+
+		.img-container
+			order 2
+
+		p
+			order 1
+			color $off-black
+
+	#trendNote3
+		.wrapper
+			top 600px
+
+		.img-container
+			order 2
+
+		p
+			order 1
+			color $off-black
+
+	#discrimNote1
+		.wrapper
+			top 340px
+
+		.img-container
+			order 2
+
+		p
+			order 1
+			color $off-black
+
+	#discrimNote2
+		.wrapper
+			top 100px
+
+		.img-container
+			order 2
+
+		p
+			order 1
+			color $off-black
+
+	#discrimNote3
+		.wrapper
+			top 580px
+
+		.img-container
+			order 2
+
+		p
+			order 1
+			color $off-black
+
+	.trend__note
+		position absolute
+		transform translate(-700px, 0px)
+		height 1080px
+		width 400px
+		border-left 5px dashed black
+		padding-left 20px
+		display flex
+		flex-direction column
+
+		.wrapper
+			position absolute
+			display flex
+			flex-direction column
+			width 400px
+
+		.img-container
+			display flex
+			flex-direction row
+			width 340px
+			position relative
+			left -5px
+			margin 20px 0
+
+			img
+				border 5px solid $hb-paper
+				width 170px
+				height 170px
+				opacity 0
+
+		p
+			font-family $cooper
+			font-weight 700
+			margin 0
+			set-type-size('xx-large', true)
+			color $off-black
+
+	#trendNote2, #discrimNote3
+		border-right 5px dashed $off-black
+		padding-right 20px
+		border-left 0
+		padding-left 0
+
+		.wrapper
+			padding-right 20px
+
+	.trend__text
+		position absolute
+		top 50%
+		left 50%
+		transform translate(-50%, -50%)
+		width 1000px
+
+		p
+			font-family $cooper
+			font-weight 700
+			margin 0
+			set-type-size('xxxx-large', true)
+			line-height 1.2
+			opacity 0
+			color $off-black
+
+			span
+				opacity 0
+
+	.line-label
+		position absolute
+		font-family $cooper
+		set-type-size('xxx-large', true)
+		opacity 0
+
+		&-female
+			color $hb-green
+			top 420px
+			right 50px
+			text-align right
+
+		&-male
+			color $hb-yellow
+			top 550px
+			left 50px
+			text-align left
+
+	figure
+		width 1920px
+		height 1080px
+		display flex
+		align-items center
+
+		.Female
+			stroke $hb-green
+			stroke-width 4px
+			fill none
+			opacity 0
+
+		.Male
+			stroke $hb-yellow
+			stroke-width 4px
+			fill none
+			opacity 0
+
+		.area
+			//display none
+			fill rgba($hb-yellow, 0.15)
+			opacity 0
+
+		.x.axis
+			.domain
+					display none
+			.tick
+				line
+					display none
+				text
+					font-family $courier
+					font-weight 700
+					set-type-size('large', true)
+					fill $off-black
+					opacity 0
+
+		.y.axis
+			display none
+			.domain
+					display none
+			.tick
+				line
+					display none
+				text
+					font-family $courier
+					font-weight 700
+					set-type-size('medium', true)
+					fill $off-black
