@@ -342,10 +342,10 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 
 		function fadeOutTicks() {
 			return new Promise((resolve) => {
-				d3.selectAll('.chart-label').transition()
-					.duration(500)
-					.ease(d3.easeLinear)
-					.style('opacity', 0.1)
+				// d3.selectAll('.chart-label').transition()
+				// 	.duration(500)
+				// 	.ease(d3.easeLinear)
+				// 	.style('opacity', 0.1)
 
 				const xTicks = d3.selectAll('.x.axis text').transition()
 					.duration(500)
@@ -504,9 +504,11 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				await typer.reveal($trendText1)
 				await pause(2)
 				await slide({ sel: $trendText1, state: 'exit', early: true })
-				await transitionLabels()
 				await fadeBG('out')
 				await fadeInTicks()
+				await pause(0.5)
+				await transitionLabels()
+				await pause(0.5)
 				await transitionLines()
 				await fadeInArea()
 				await pause(2)
