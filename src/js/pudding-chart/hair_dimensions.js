@@ -183,7 +183,7 @@ d3.selection.prototype.puddingHairDimensions = function init(options) {
 				.data(data)
 				.enter()
 				.append('img')
-				.attr('src', d => `assets/images/hairspace/dim_${dimension}/dim_${dimension}_${d.file}.png`)
+				.attr('src', d => `assets/images/hairspace/tan/dim_${dimension}/dim_${dimension}_${d.file}.png`)
 				.attr('class', d => `dim_${dimension}_${d.file} dimImg_${dimension}`)
 		}
 
