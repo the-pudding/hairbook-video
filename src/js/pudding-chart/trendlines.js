@@ -15,8 +15,8 @@ const $discrimNote1 = $trendlines_section.select('#discrimNote1');
 const $discrimNote2 = $trendlines_section.select('#discrimNote2');
 const $discrimNote3 = $trendlines_section.select('#discrimNote3');
 const $topLabelFemale = d3.selectAll('.top-label-female')
-const $topLabelMale = d3.selectAll('.top-label-male')
-const $bottomLabelFemale = d3.selectAll('.bottom-label-female')
+const $topLabelDiff = d3.selectAll('.top-label-diff')
+const $bottomLabelDiff = d3.selectAll('.bottom-label-diff')
 const $bottomLabelMale = d3.selectAll('.bottom-label-male')
 const $sections = d3.selectAll('section')
 
@@ -144,10 +144,35 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 			})
 		}
 
+		function swapLabels() {
+			return new Promise((resolve) => {
+				$topLabelFemale.transition()
+					.duration(100)
+					.ease(d3.easeLinear)
+					.style('left', '-500px')
+
+				$bottomLabelMale.transition()
+					.duration(100)
+					.ease(d3.easeLinear)
+					.style('right', '-500px')
+
+				$topLabelDiff.transition()
+					.duration(100)
+					.delay(500)
+					.ease(d3.easeLinear)
+					.style('left', '0px')
+
+				$bottomLabelDiff.transition()
+					.duration(100)
+					.delay(500)
+					.ease(d3.easeLinear)
+					.style('right', '0px')
+					.on('end', resolve)
+			})
+		}
+
 		function discrimLineTransition() {
 			return new Promise((resolve) => {
-				$topLabelFemale.select('p').text(`Less similar women & men's styles`)
-				$bottomLabelMale.select('p').text(`More similar women & men's styles`)
 
 				const $area = d3.selectAll('.area')
 				$area.transition()
@@ -323,41 +348,92 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				const xTicks = d3.selectAll('.x.axis text').transition()
 					.duration(500)
 					.ease(d3.easeLinear)
-					.style('opacity', 0.1)
+					.style('opacity', 0.5)
 					.on('end', resolve)
 			})
 		}
 
 		function fadeLine(gender, direction) {
-			const lowercaseGender = gender.toLowerCase()
-			const line = d3.selectAll(`.${gender}`)
-			const label = d3.selectAll(`.line-label-${lowercaseGender}`)
+			const maleLabel = d3.selectAll(`.line-label-male`)
+			const femaleLabel = d3.selectAll(`.line-label-female`)
 			const $area = d3.selectAll('.area')
+			const femalePath = d3.selectAll(`.Female`)
+			const malePath = d3.selectAll(`.Male`)
 			return new Promise((resolve) => {
-				line.transition()
-					.duration(500)
-					.ease(d3.easeLinear)
-					.style('opacity', function() {
-						if (direction == 'in') { return 0.1 }
-						else { return 1 }
-					})
 
-				label.transition()
-					.duration(500)
-					.ease(d3.easeLinear)
-					.style('opacity', function() {
-						if (direction == 'in') { return 0.1 }
-						else { return 1 }
-					})
+				if (gender == "Male") {
+					malePath.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '0.1')
 
-				$area.transition()
-					.duration(500)
-					.ease(d3.easeLinear)
-					.style('opacity', function() {
-						if (direction == 'in') { return 0 }
-						else { return 1 }
-					})
-					.on('end', resolve)
+					maleLabel.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '0.1')
+
+					$area.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '0')
+						.on('end', resolve)
+				}
+
+				else if (gender == 'Female') {
+					femalePath.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '0.1')
+
+					malePath.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '1')
+
+					femaleLabel.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '0.1')
+
+					maleLabel.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '1')
+
+					$area.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '0')
+						.on('end', resolve)
+				}
+
+				else {
+					femalePath.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '1')
+
+					malePath.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '1')
+
+					femaleLabel.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '1')
+
+					maleLabel.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '1')
+
+					$area.transition()
+						.duration(500)
+						.ease(d3.easeLinear)
+						.style('opacity', '1')
+						.on('end', resolve)
+				}
 			})
 		}
 
@@ -482,23 +558,19 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				await transitionLines()
 				await fadeInArea()
 				await fadeInTicks()
-				await pause(1)
 				await pause(2)
 				await fadeOutTicks()
-				await fadeLine('Male', 'in')
+				await fadeLine('Male')
 				await slide({ sel: $trendNote1, state: 'enter', xInput: 30 })
 				await fadeInNoteImgs('#imgNote1')
 				await pause(4)
 				await slide({ sel: $trendNote1, state: 'enter', early: true, xInput: 2000 })
-				await fadeLine('Male', 'out')
-				//await pause(1)
-				await fadeLine('Female', 'in')
+				await fadeLine('Female')
 				await slide({ sel: $trendNote2, state: 'enter', xInput: 290 })
 				await fadeInNoteImgs('#imgNote2')
 				await pause(4)
 				await slide({ sel: $trendNote2, state: 'enter', early: true, xInput: 2000 })
-				await fadeLine('Female', 'out')
-				//await pause(1)
+				await fadeLine('Both')
 				await slide({ sel: $trendNote3, state: 'enter', xInput: 1200 })
 				await fadeInNoteImgs('#imgNote3')
 				await pause(4)
@@ -513,26 +585,25 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				await fadeInTicks()
 				await pause(1)
 				await discrimLineTransition()
+				await pause(1)
+				await swapLabels()
 				await pause(2)
 				await fadeOutTicks()
 				await slide({ sel: $discrimNote1, state: 'enter', xInput: 360 })
 				await fadeInNoteImgs('#imgNote4')
 				await pause(4)
 				await slide({ sel: $discrimNote1, state: 'enter', early: true, xInput: 2000 })
-				await pause(2)
 				await slide({ sel: $discrimNote2, state: 'enter', xInput: 1160 })
 				await fadeInNoteImgs('#imgNote5')
 				await pause(4)
 				await slide({ sel: $discrimNote2, state: 'enter', early: true, xInput: 2025 })
-				await pause(2)
 				await slide({ sel: $discrimNote3, state: 'enter', xInput: 1460 })
 				await fadeInNoteImgs('#imgNote6')
 				await pause(4)
 				await slide({ sel: $discrimNote3, state: 'enter', early: true, xInput: 2000 })
-				await pause(2)
 				await fadeBG('out')
 				await fadeInTicks()
-				await pause(1)
+				await pause(2)
 				await fadeToOutro()
 			},
 			// get / set data

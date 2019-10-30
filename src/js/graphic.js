@@ -76,7 +76,7 @@ async function runAll() {
   //await intro.run()
   //await chartDimensions.run()
   //await chartStyles.run()
-  await chartPhotos.run()
+  //await chartPhotos.run()
   await chartTrends.run()
   //await outro.run()
   const end = d3.now();
