@@ -56,18 +56,6 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 		function fadeInPhotos() {
 			return new Promise((resolve) => {
 
-				// transition in labels
-				$topLabelFemale.transition()
-					.duration(500)
-					.ease(d3.easeLinear)
-					.style('opacity', '1')
-
-				$bottomLabelFemale.transition()
-					.duration(500)
-					.delay(2500)
-					.ease(d3.easeLinear)
-					.style('opacity', '1')
-
 				// transition in photo divs
 				const $photoDivsFemale = d3.selectAll('.photoDiv-female')
 				const $photoDivsMale = d3.selectAll('.photoDiv-male')
@@ -82,27 +70,28 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 					.delay((d, i) => i * 20)
 					.ease(d3.easeLinear)
 					.style('opacity', 1)
-
-				$decadeLabelDiv.transition()
-					.duration(500)
-					.delay(2500)
-					.ease(d3.easeLinear)
-					.style('opacity', 1)
 					.on('end', resolve)
+
+				// $decadeLabelDiv.transition()
+				// 	.duration(500)
+				// 	.delay(2500)
+				// 	.ease(d3.easeLinear)
+				// 	.style('opacity', 1)
+				// 	.on('end', resolve)
 			})
 		}
 
 		// fades in and out BG for text overlay
 		function fadeBG(direction) {
 			return new Promise((resolve) => {
-				const $chartLabels = d3.selectAll('.chart-label')
-				$chartLabels.transition()
-					.duration(250)
-					.ease(d3.easeLinear)
-					.style('opacity', function() {
-						if (direction == 'in') { return 0.1 }
-						else { return 1 }
-					})
+				// const $chartLabels = d3.selectAll('.chart-label')
+				// $chartLabels.transition()
+				// 	.duration(250)
+				// 	.ease(d3.easeLinear)
+				// 	.style('opacity', function() {
+				// 		if (direction == 'in') { return 0.1 }
+				// 		else { return 1 }
+				// 	})
 
 				$yearbook_photos_section.selectAll('figure').transition()
 					.duration(250)
@@ -129,33 +118,9 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 					.style('opacity', 1)
 
 				$decadeLabelDiv.transition()
-					.duration(0)
+					.duration(500)
 					.ease(d3.easeLinear)
 					.style('opacity', 0)
-
-				$topLabelFemale.transition()
-					.duration(500)
-					.ease(d3.easeLinear)
-					.style('top', '0')
-
-				$topLabelMale.transition()
-					.duration(500)
-					.ease(d3.easeLinear)
-					.style('opacity', '1')
-					.style('top', '590px')
-
-				$bottomLabelFemale.transition()
-					.duration(500)
-					.ease(d3.easeLinear)
-					.style('bottom', '595px')
-					.style('right', '7px')
-
-				$bottomLabelMale.transition()
-					.duration(100)
-					.ease(d3.easeLinear)
-					.style('opacity', '1')
-					.style('bottom', '3px')
-					.style('right', '7px')
 
 				$photoContainerFemale.transition()
 				 	.duration(500)
@@ -228,9 +193,6 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 					.style('left', d => `${d.left}px`)
 					.style('top', d => `${d.top}px`)
 
-				$decadeLabelDiv = $photoDivFemale.append('div').attr('class', d => `decadeLabel decadeLabel-${d.ID}`)
-				d3.selectAll('.decadeLabel-1930_1,.decadeLabel-1940_1,.decadeLabel-1950_1,.decadeLabel-1960_1,.decadeLabel-1970_1,.decadeLabel-1980_1,.decadeLabel-1990_1,.decadeLabel-2000_1,.decadeLabel-2010_1').classed('visible-decade', true)
-				$decadeLabel = $decadeLabelDiv.append('p').text(d => `${d.decade}s`)
 				$femalePhotoDiv = $photoDivFemale.append('div').attr('class', 'yearbook-photo female-photo')
 				$femalePhoto = $femalePhotoDiv.append('img').attr('src', d => `assets/images/avgs_decade/${d.femalePhoto}.png`)
 
@@ -247,7 +209,12 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 				$malePhotoDiv = $photoDivMale.append('div').attr('class', 'yearbook-photo male-photo')
 				$malePhoto = $malePhotoDiv.append('img').attr('src', d => `assets/images/avgs_decade/${d.malePhoto}.png`)
 
-				//random opacity on male photos
+				//decades
+				$decadeLabelDiv = d3.selectAll('.photoDiv').append('div').attr('class', d => `decadeLabel decadeLabel-${d.ID}`)
+				d3.selectAll('.decadeLabel-1930_1,.decadeLabel-1940_1,.decadeLabel-1950_1,.decadeLabel-1960_1,.decadeLabel-1970_1,.decadeLabel-1980_1,.decadeLabel-1990_1,.decadeLabel-2000_1,.decadeLabel-2010_1').classed('visible-decade', true)
+				$decadeLabel = $decadeLabelDiv.append('p').text(d => `${d.decade}s`)
+
+				//random opacity on photos
 				selectRandomPhotos()
 
 				//prepare spans for text
