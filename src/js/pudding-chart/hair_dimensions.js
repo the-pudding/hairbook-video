@@ -45,21 +45,12 @@ d3.selection.prototype.puddingHairDimensions = function init(options) {
 			await drawInLines(dimension)
 			await advanceDimPhoto(dimension)
 		}
-		async function removeDimensionSequence(dimension) {
-			await removeBlocks(dimension)
-		}
 
-		function removeBlocks(dimension) {
-			fadeOutLines(dimension)
-			fadeOutPhoto(dimension)
-			fadeOutText(dimension)
-		}
-
-		function fadeOutPhoto(dimension) {
+		function removeBlock(dimension) {
 			return new Promise((resolve) => {
-				const dimImgs = d3.selectAll(`.dimImg_${dimension}`)
+				const dimDiv = d3.selectAll(`.dim${dimension}`)
 
-				dimImgs
+				dimDiv
 					.transition()
 					.duration(100)
 					.style('opacity', 0)
@@ -291,13 +282,13 @@ d3.selection.prototype.puddingHairDimensions = function init(options) {
 				await dimensionSequence(4)
 				await pause(0.5)
 				await slide({ sel: $dimText1, state: 'exit', early: true })
-				await removeDimensionSequence(1)
+				await removeBlock(1)
 				await pause(0.25)
-				await removeDimensionSequence(2)
+				await removeBlock(2)
 				await pause(0.25)
-				await removeDimensionSequence(3)
+				await removeBlock(3)
 				await pause(0.25)
-				await removeDimensionSequence(4)
+				await removeBlock(4)
 				await pause(1)
 				await typer.reveal($dimText2)
 				await drawInFrameLines('.frame__lines__3')
