@@ -163,6 +163,82 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 			$femalePhotos.style('opacity', (d, i) => ran[i] ? 0 : 1)
 		}
 
+		function tweenDashIn() {
+			const l = this.getTotalLength()
+			const i = d3.interpolateString('0,' + l, l + ',' + l);
+			return function(t) { return i(t); };
+		}
+
+		function tweenDashOut() {
+			const l = this.getTotalLength()
+			const i = d3.interpolateString('0,' + l, l + ',' + l);
+			return function(t) { return i(1-t); };
+		}
+
+		function drawInLines(lineClass) {
+			return new Promise((resolve) => {
+				const introLineContainer = d3.selectAll(`${lineClass}`)
+		    const introLines = introLineContainer.selectAll('.st0')
+		    const lineNodes = introLines._groups[0]
+
+		    lineNodes.forEach.call(lineNodes, function(path) {
+		      introLines
+		        .transition()
+		        .delay((d) => Math.random() * Math.random(500))
+		        .duration(1000)
+		        .ease(d3.easeLinear)
+						.style('opacity', 1)
+		        .attrTween('stroke-dasharray', tweenDashIn)
+		    })
+
+				setTimeout(resolve, 200)
+			})
+		}
+
+		function drawOutLines(lineClass) {
+			return new Promise((resolve) => {
+				const introLineContainer = d3.selectAll(`${lineClass}`)
+		    const introLines = introLineContainer.selectAll('.st0')
+		    const lineNodes = introLines._groups[0]
+
+		    lineNodes.forEach.call(lineNodes, function(path) {
+		      introLines
+		        .transition()
+		        .delay((d) => Math.random() * Math.random(500))
+		        .duration(500)
+		        .ease(d3.easeLinear)
+						.style('opacity', 1)
+		        .attrTween('stroke-dasharray', tweenDashOut)
+		    })
+
+				setTimeout(resolve, 200)
+			})
+		}
+
+		function fadeInColorBlocks(blockClass, del) {
+		  return new Promise((resolve) => {
+		    const colorBlocks = d3.selectAll(`${blockClass}`)
+
+		    colorBlocks
+		      .transition()
+		      .delay((d, i) => i * del)
+		      .style('opacity', 1)
+		      .on('end', resolve)
+		  })
+		}
+
+		function fadeOutColorBlocks(blockClass, del) {
+		  return new Promise((resolve) => {
+		    const colorBlocks = d3.selectAll(`${blockClass}`)
+
+		    colorBlocks
+		      .transition()
+		      .delay((d, i) => i * del)
+		      .style('opacity', 0)
+		      .on('end', resolve)
+		  })
+		}
+
 		// BUILDS PHOTO GRID CHART
 		const Chart = {
 			// called once at start
@@ -225,7 +301,12 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 				await hideShowSection()
 				await pause(1)
 				await typer.reveal($avgGridText1)
-				await pause(3)
+				await drawInLines('.frame__lines__4')
+				await pause(0.5)
+				await fadeInColorBlocks('.frame4Color', 500)
+				await pause(3.5)
+				await drawOutLines('.frame__lines__4')
+				await fadeOutColorBlocks('.frame4Color', 50)
 				await slide({ sel: $avgGridText1, state: 'exit', early: true })
 				await fadeInPhotos()
 				await pause(4)

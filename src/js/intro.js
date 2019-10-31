@@ -26,9 +26,9 @@ function tweenDashOut() {
 	return function(t) { return i(1-t); };
 }
 
-function drawInLines() {
+function drawInLines(lineClass) {
 	return new Promise((resolve) => {
-		const introLineContainer = d3.selectAll(`.intro__lines`)
+		const introLineContainer = d3.selectAll(`${lineClass}`)
     const introLines = introLineContainer.selectAll('.st0')
     const lineNodes = introLines._groups[0]
 
@@ -46,9 +46,9 @@ function drawInLines() {
 	})
 }
 
-function drawOutLines() {
+function drawOutLines(lineClass) {
 	return new Promise((resolve) => {
-		const introLineContainer = d3.selectAll(`.intro__lines`)
+		const introLineContainer = d3.selectAll(`${lineClass}`)
     const introLines = introLineContainer.selectAll('.st0')
     const lineNodes = introLines._groups[0]
 
@@ -66,25 +66,25 @@ function drawOutLines() {
 	})
 }
 
-function fadeInColorBlocks() {
+function fadeInColorBlocks(blockClass, del) {
   return new Promise((resolve) => {
-    const colorBlocks = d3.selectAll('.photoColor')
+    const colorBlocks = d3.selectAll(`${blockClass}`)
 
     colorBlocks
       .transition()
-      .delay((d, i) => i * 150)
+      .delay((d, i) => i * del)
       .style('opacity', 1)
       .on('end', resolve)
   })
 }
 
-function fadeOutColorBlocks() {
+function fadeOutColorBlocks(blockClass, del) {
   return new Promise((resolve) => {
-    const colorBlocks = d3.selectAll('.photoColor')
+    const colorBlocks = d3.selectAll(`${blockClass}`)
 
     colorBlocks
       .transition()
-      .delay((d, i) => i * 50)
+      .delay((d, i) => i * del)
       .style('opacity', 0)
       .on('end', resolve)
   })
@@ -121,26 +121,36 @@ async function run() {
 	await typer.prepare($method1)
   await typer.prepare($method2)
 	await pause(3)
-	await drawInLines()
+	await drawInLines('.intro__lines')
   await fadeInPhotos()
 	await pause(0.5)
-  await fadeInColorBlocks()
+  await fadeInColorBlocks('.photoColor', 150)
 	await pause(1)
   await typer.reveal($title)
   await typer.reveal($byline)
 	await pause(3)
-	await fadeOutColorBlocks()
+	await fadeOutColorBlocks('.photoColor', 50)
 	await fadeOutPhotos()
-	await drawOutLines()
+	await drawOutLines('.intro__lines')
 	await pause(0.5)
 	await slide({ sel: $title, state: 'exit', early: true })
 	await slide({ sel: $byline, state: 'exit', early: true })
 	await pause(1)
 	await typer.reveal($method1)
+	await drawInLines('.frame__lines__1')
+	await pause(0.5)
+	await fadeInColorBlocks('.frame1Color', 500)
 	await pause(3.5)
+	await drawOutLines('.frame__lines__1')
+	await fadeOutColorBlocks('.frame1Color', 50)
 	await slide({ sel: $method1, state: 'exit', early: true })
 	await typer.reveal($method2)
+	await drawInLines('.frame__lines__2')
+	await pause(0.5)
+	await fadeInColorBlocks('.frame2Color', 500)
 	await pause(3.5)
+	await drawOutLines('.frame__lines__2')
+	await fadeOutColorBlocks('.frame2Color', 50)
 	await slide({ sel: $method2, state: 'exit', early: true })
 
 }

@@ -77,8 +77,8 @@ async function runAll() {
   //await chartDimensions.run()
   //await chartStyles.run()
   //await chartPhotos.run()
-  await chartTrends.run()
-  //await outro.run()
+  //await chartTrends.run()
+  await outro.run()
   const end = d3.now();
   const diff = end - start;
   const frames = Math.round(diff / 1000 * 60)

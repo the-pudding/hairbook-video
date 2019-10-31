@@ -187,6 +187,70 @@ d3.selection.prototype.puddingHairDimensions = function init(options) {
 				.attr('class', d => `dim_${dimension}_${d.file} dimImg_${dimension}`)
 		}
 
+		function drawInFrameLines(lineClass) {
+			return new Promise((resolve) => {
+				const introLineContainer = d3.selectAll(`${lineClass}`)
+		    const introLines = introLineContainer.selectAll('.st0')
+		    const lineNodes = introLines._groups[0]
+
+		    lineNodes.forEach.call(lineNodes, function(path) {
+		      introLines
+		        .transition()
+		        .delay((d) => Math.random() * Math.random(500))
+		        .duration(1000)
+		        .ease(d3.easeLinear)
+						.style('opacity', 1)
+		        .attrTween('stroke-dasharray', tweenDashIn)
+		    })
+
+				setTimeout(resolve, 200)
+			})
+		}
+
+		function drawOutFrameLines(lineClass) {
+			return new Promise((resolve) => {
+				const introLineContainer = d3.selectAll(`${lineClass}`)
+		    const introLines = introLineContainer.selectAll('.st0')
+		    const lineNodes = introLines._groups[0]
+
+		    lineNodes.forEach.call(lineNodes, function(path) {
+		      introLines
+		        .transition()
+		        .delay((d) => Math.random() * Math.random(500))
+		        .duration(500)
+		        .ease(d3.easeLinear)
+						.style('opacity', 1)
+		        .attrTween('stroke-dasharray', tweenDashOut)
+		    })
+
+				setTimeout(resolve, 200)
+			})
+		}
+
+		function fadeInColorBlocks(blockClass, del) {
+		  return new Promise((resolve) => {
+		    const colorBlocks = d3.selectAll(`${blockClass}`)
+
+		    colorBlocks
+		      .transition()
+		      .delay((d, i) => i * del)
+		      .style('opacity', 1)
+		      .on('end', resolve)
+		  })
+		}
+
+		function fadeOutColorBlocks(blockClass, del) {
+		  return new Promise((resolve) => {
+		    const colorBlocks = d3.selectAll(`${blockClass}`)
+
+		    colorBlocks
+		      .transition()
+		      .delay((d, i) => i * del)
+		      .style('opacity', 0)
+		      .on('end', resolve)
+		  })
+		}
+
 		const Chart = {
 			// called once at start
 			init() {
@@ -236,7 +300,12 @@ d3.selection.prototype.puddingHairDimensions = function init(options) {
 				await removeDimensionSequence(4)
 				await pause(1)
 				await typer.reveal($dimText2)
-				await pause(3)
+				await drawInFrameLines('.frame__lines__3')
+				await pause(0.5)
+				await fadeInColorBlocks('.frame3Color', 500)
+				await pause(3.5)
+				await drawOutFrameLines('.frame__lines__3')
+				await fadeOutColorBlocks('.frame3Color', 50)
 				await slide({ sel: $dimText2, state: 'exit', early: true })
 			},
 			// get / set data
