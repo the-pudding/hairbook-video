@@ -5,6 +5,9 @@ import slide from './slide';
 const $sections = d3.selectAll('section')
 const $outro1 = d3.selectAll('#outro1 p')
 const $outro2 = d3.selectAll('#outro2 p')
+const lenCalc = 3/100
+const $outro1_len = $outro1.text().length * lenCalc
+const $outro2_len = $outro2.text().length * lenCalc
 
 // helper functions
 function hideShowSection() {
@@ -97,7 +100,7 @@ async function run() {
 	await drawInLines('.frame__lines__2')
 	await pause(0.5)
 	await fadeInColorBlocks('.frame2Color', 500)
-	await pause(3.5)
+	await pause($outro1_len)
 	await drawOutLines('.frame__lines__2')
 	await fadeOutColorBlocks('.frame2Color', 50)
 	await slide({ sel: $outro1, state: 'exit', early: true })
@@ -106,7 +109,7 @@ async function run() {
 	await drawInLines('.frame__lines__1')
 	await pause(0.5)
 	await fadeInColorBlocks('.frame1Color', 500)
-	await pause(3.5)
+	await pause($outro2_len)
 	await drawOutLines('.frame__lines__1')
 	await fadeOutColorBlocks('.frame1Color', 50)
 	await slide({ sel: $outro2, state: 'exit', early: true })

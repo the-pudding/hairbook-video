@@ -44,6 +44,9 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 		const $topLabelMale = d3.selectAll('.top-label-male')
 		const $bottomLabelFemale = d3.selectAll('.bottom-label-female')
 		const $bottomLabelMale = d3.selectAll('.bottom-label-male')
+		const lenCalc = 3/100
+		const $avgGridText1_len = $avgGridText1.text().length * lenCalc
+		const $avgGridText2_len = $avgGridText2.text().length * lenCalc
 
 		// ANIMATION FUNCTIONS
 		// in place for each large scene change to show relevant scenes
@@ -304,7 +307,7 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 				await drawInLines('.frame__lines__4')
 				await pause(0.5)
 				await fadeInColorBlocks('.frame4Color', 500)
-				await pause(3.5)
+				await pause($avgGridText1_len)
 				await drawOutLines('.frame__lines__4')
 				await fadeOutColorBlocks('.frame4Color', 50)
 				await slide({ sel: $avgGridText1, state: 'exit', early: true })
@@ -313,7 +316,7 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 				await fadeBG('in')
 				await pause(0.25)
 				await typer.reveal($avgGridText2)
-				await pause(2)
+				await pause($avgGridText2_len)
 				await slide({ sel: $avgGridText2, state: 'exit', early: true })
 				await fadeBG('out')
 				await pause(2)

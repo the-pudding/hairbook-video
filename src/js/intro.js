@@ -4,8 +4,11 @@ import slide from './slide';
 
 const $title = d3.selectAll('.intro__hed')
 const $byline = d3.selectAll('.intro__byline p')
+const lenCalc = 3/100
 const $method1 = d3.selectAll('#method1 p')
+const $method1_len = $method1.text().length * lenCalc
 const $method2 = d3.selectAll('#method2 p')
+const $method2_len = $method2.text().length * lenCalc
 const $sections = d3.selectAll('section')
 
 // helper functions
@@ -140,7 +143,7 @@ async function run() {
 	await drawInLines('.frame__lines__1')
 	await pause(0.5)
 	await fadeInColorBlocks('.frame1Color', 500)
-	await pause(3.5)
+	await pause($method1_len)
 	await drawOutLines('.frame__lines__1')
 	await fadeOutColorBlocks('.frame1Color', 50)
 	await slide({ sel: $method1, state: 'exit', early: true })
@@ -148,7 +151,7 @@ async function run() {
 	await drawInLines('.frame__lines__2')
 	await pause(0.5)
 	await fadeInColorBlocks('.frame2Color', 500)
-	await pause(3.5)
+	await pause($method2_len)
 	await drawOutLines('.frame__lines__2')
 	await fadeOutColorBlocks('.frame2Color', 50)
 	await slide({ sel: $method2, state: 'exit', early: true })

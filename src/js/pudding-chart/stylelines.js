@@ -64,6 +64,8 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 		const $style_section = d3.selectAll('#stylelines')
 		const $styleText1 = $style_section.select('#styleText1 p');
 		const $styleText2 = $style_section.select('#styleText2 p');
+		const lenCalc = 3/100
+		const $styleText1_len = $styleText1.text().length * lenCalc
 		const $sections = d3.selectAll('section')
 
 		// helper functions
@@ -551,7 +553,7 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 				await fadeBG('in')
 				await pause(0.25)
 				await typer.reveal($styleText1)
-				await pause(3)
+				await pause($styleText1_len)
 				await slide({ sel: $styleText1, state: 'exit', early: true })
 				await fadeBG('out')
 				await pause(1)
@@ -566,7 +568,7 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 				await drawInStyleLine('mullet')
 				await pause(1)
 				await drawInStyleLine('longstraight')
-				await pause(4)
+				await pause(3.5)
 				await fadeOutStyleBlocks('beehive')
 				await pause(0.25)
 				await fadeOutStyleBlocks('mullet')

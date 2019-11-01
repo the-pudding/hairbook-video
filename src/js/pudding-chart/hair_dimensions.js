@@ -32,6 +32,8 @@ d3.selection.prototype.puddingHairDimensions = function init(options) {
 		const $hair_dimensions_section = d3.selectAll('#hair_dimensions')
 		const $dimText1 = $hair_dimensions_section.select('#dimText1 p');
 		const $dimText2 = $hair_dimensions_section.select('#dimText2 p');
+		const lenCalc = 3/100
+		const $dimText2_len = $dimText2.text().length * lenCalc
 		const $sections = d3.selectAll('section')
 
 		// animation functions
@@ -294,7 +296,7 @@ d3.selection.prototype.puddingHairDimensions = function init(options) {
 				await drawInFrameLines('.frame__lines__3')
 				await pause(0.5)
 				await fadeInColorBlocks('.frame3Color', 500)
-				await pause(3.5)
+				await pause($dimText2_len)
 				await drawOutFrameLines('.frame__lines__3')
 				await fadeOutColorBlocks('.frame3Color', 50)
 				await slide({ sel: $dimText2, state: 'exit', early: true })

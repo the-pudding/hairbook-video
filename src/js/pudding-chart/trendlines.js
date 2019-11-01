@@ -19,6 +19,15 @@ const $topLabelDiff = d3.selectAll('.top-label-diff')
 const $bottomLabelDiff = d3.selectAll('.bottom-label-diff')
 const $bottomLabelMale = d3.selectAll('.bottom-label-male')
 const $sections = d3.selectAll('section')
+const lenCalc = 3/100
+const $trendText1_len = $trendText1.text().length * lenCalc
+const $trendText2_len = $trendText2.text().length * lenCalc
+const $trendNote1_len = $trendNote1.select('p').text().length * lenCalc
+const $trendNote2_len = $trendNote2.select('p').text().length * lenCalc
+const $trendNote3_len = $trendNote3.select('p').text().length * lenCalc
+const $discrimNote1_len = $discrimNote1.select('p').text().length * lenCalc
+const $discrimNote2_len = $discrimNote2.select('p').text().length * lenCalc
+const $discrimNote3_len = $discrimNote3.select('p').text().length * lenCalc
 
 d3.selection.prototype.puddingTrendLines = function init(options) {
 	function createChart(el) {
@@ -551,7 +560,7 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				await fadeBG('in')
 				await pause(0.25)
 				await typer.reveal($trendText1)
-				await pause(2)
+				await pause($trendText1_len)
 				await slide({ sel: $trendText1, state: 'exit', early: true })
 				await fadeBG('out')
 				await pause(1)
@@ -563,23 +572,23 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				await fadeLine('Male')
 				await slide({ sel: $trendNote1, state: 'enter', xInput: 30 })
 				await fadeInNoteImgs('#imgNote1')
-				await pause(4)
+				await pause($trendNote1_len)
 				await slide({ sel: $trendNote1, state: 'enter', early: true, xInput: 2000 })
 				await fadeLine('Female')
 				await slide({ sel: $trendNote2, state: 'enter', xInput: 290 })
 				await fadeInNoteImgs('#imgNote2')
-				await pause(4)
+				await pause($trendNote2_len)
 				await slide({ sel: $trendNote2, state: 'enter', early: true, xInput: 2000 })
 				await fadeLine('Both')
 				await slide({ sel: $trendNote3, state: 'enter', xInput: 1200 })
 				await fadeInNoteImgs('#imgNote3')
-				await pause(4)
+				await pause($trendNote3_len)
 				await slide({ sel: $trendNote3, state: 'enter', early: true, xInput: 2000 })
 				await pause(2)
 				await fadeBG('in')
 				await pause(0.25)
 				await typer.reveal($trendText2)
-				await pause(2)
+				await pause($trendText2_len)
 				await slide({ sel: $trendText2, state: 'exit', early: true })
 				await fadeBG('out')
 				await fadeInTicks()
@@ -591,15 +600,15 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				await fadeOutTicks()
 				await slide({ sel: $discrimNote1, state: 'enter', xInput: 360 })
 				await fadeInNoteImgs('#imgNote4')
-				await pause(4)
+				await pause($discrimNote1_len)
 				await slide({ sel: $discrimNote1, state: 'enter', early: true, xInput: 2000 })
 				await slide({ sel: $discrimNote2, state: 'enter', xInput: 1160 })
 				await fadeInNoteImgs('#imgNote5')
-				await pause(4)
+				await pause($discrimNote2_len)
 				await slide({ sel: $discrimNote2, state: 'enter', early: true, xInput: 2025 })
 				await slide({ sel: $discrimNote3, state: 'enter', xInput: 1460 })
 				await fadeInNoteImgs('#imgNote6')
-				await pause(4)
+				await pause($discrimNote3_len)
 				await slide({ sel: $discrimNote3, state: 'enter', early: true, xInput: 2000 })
 				await fadeBG('out')
 				await fadeInTicks()
