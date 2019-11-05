@@ -64,7 +64,7 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 		const $style_section = d3.selectAll('#stylelines')
 		const $styleText1 = $style_section.select('#styleText1 p');
 		const $styleText2 = $style_section.select('#styleText2 p');
-		const lenCalc = 3/100
+		const lenCalc = 4/100
 		const $styleText1_len = $styleText1.text().length * lenCalc
 		const $sections = d3.selectAll('section')
 
@@ -100,7 +100,7 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 			return new Promise((resolve) => {
 				xTicks = d3.selectAll('.x.axis text')
 					.transition()
-					.duration(200)
+					.duration(500)
 					.delay((d, i) => i * 50)
 					.ease(d3.easeLinear)
 					.style('opacity', 1)
@@ -116,6 +116,7 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 
 		async function animateStyle() {
 			await fadeInStyleName()
+			await pause(0.25)
 			await fadeInStylePhoto()
 			await drawInAxis()
 		}
@@ -126,22 +127,22 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 
 				name
 					.transition()
-					.duration(100)
-					.delay(250)
-					.style('opacity', 1)
+					.duration(500)
+					.delay((d, i) => i * 50)
+					.style('transform', 'translate(0, 0)')
 					.on('end', resolve)
 			})
 		}
 
 		function fadeInStylePhoto() {
 			return new Promise((resolve) => {
-				const img = d3.selectAll(`img`)
+				const img = d3.selectAll(`.style-block img`)
 
 				img
 					.transition()
-					.duration(100)
-					.delay(250)
-					.style('opacity', 1)
+					.duration(500)
+					.delay((d, i) => i * 50)
+					.style('transform', 'translate(0, 0)')
 					.on('end', resolve)
 			})
 		}
@@ -274,7 +275,7 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 				const path = d3.selectAll(`.${lineType}`)
 
 				path.transition()
-					.duration(700)
+					.duration(500)
 					.ease(d3.easeLinear)
 					.style('opacity', 1)
 					.attrTween('stroke-dasharray', tweenDash)
@@ -311,12 +312,12 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 				const text = d3.selectAll(`#${id}Text`)
 
 				block.transition()
-					.duration(250)
+					.duration(100)
 					.ease(d3.easeLinear)
 					.style('opacity', 0)
 
 				text.transition()
-					.duration(250)
+					.duration(100)
 					.ease(d3.easeLinear)
 					.style('opacity', 0)
 					.on('end', resolve)
@@ -334,7 +335,7 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 						.attr('d', styleLine)
 
 					path.transition()
-						.duration(700)
+						.duration(1000)
 						.ease(d3.easeLinear)
 						.style('opacity', 1)
 						.attrTween('stroke-dasharray', tweenDash)
@@ -354,14 +355,14 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 						.attr('d', styleLine)
 
 					path.transition()
-						.duration(700)
+						.duration(1000)
 						.ease(d3.easeLinear)
 						.style('opacity', 1)
 						.attrTween('stroke-dasharray', tweenDash)
 
 					d3.selectAll('#mulletText').transition()
 						.duration(250)
-						.delay(200)
+						.delay(400)
 						.ease(d3.easeLinear)
 						.style('opacity', 1)
 						.on('end', resolve)
@@ -374,14 +375,14 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 						.attr('d', styleLine)
 
 					path.transition()
-						.duration(700)
+						.duration(1000)
 						.ease(d3.easeLinear)
 						.style('opacity', 1)
 						.attrTween('stroke-dasharray', tweenDash)
 
 					d3.selectAll('#longstraightText').transition()
 						.duration(250)
-						.delay(200)
+						.delay(600)
 						.ease(d3.easeLinear)
 						.style('opacity', 1)
 						.on('end', resolve)
@@ -545,6 +546,7 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 			},
 			run: async function(){
 				await hideShowSection()
+				await pause(0.25)
 				await animateStyle()
 				await fadeInDimensions()
 				await pause(1)
@@ -564,15 +566,15 @@ d3.selection.prototype.puddingStyleLines = function init(options) {
 				await transitionTicks()
 				await pause(0.25)
 				await drawInStyleLine('beehive')
-				await pause(1)
+				await pause(1.5)
 				await drawInStyleLine('mullet')
-				await pause(1)
+				await pause(1.5)
 				await drawInStyleLine('longstraight')
-				await pause(3.5)
+				await pause(4)
 				await fadeOutStyleBlocks('beehive')
-				await pause(0.25)
+				await pause(0.125)
 				await fadeOutStyleBlocks('mullet')
-				await pause(0.25)
+				await pause(0.125)
 				await fadeOutStyleBlocks('longstraight')
 			},
 			// get / set data

@@ -32,7 +32,7 @@ d3.selection.prototype.puddingHairDimensions = function init(options) {
 		const $hair_dimensions_section = d3.selectAll('#hair_dimensions')
 		const $dimText1 = $hair_dimensions_section.select('#dimText1 p');
 		const $dimText2 = $hair_dimensions_section.select('#dimText2 p');
-		const lenCalc = 3/100
+		const lenCalc = 4/100
 		const $dimText2_len = $dimText2.text().length * lenCalc
 		const $sections = d3.selectAll('section')
 
@@ -276,29 +276,30 @@ d3.selection.prototype.puddingHairDimensions = function init(options) {
 				await pause(1)
 				await typer.reveal($dimText1)
 				await dimensionSequence(1)
-				await pause(0.5)
+				//await pause(0.25)
 				await dimensionSequence(2)
-				await pause(0.5)
+				//await pause(0.25)
 				await dimensionSequence(3)
-				await pause(0.5)
+				//await pause(0.25)
 				await dimensionSequence(4)
-				await pause(0.5)
-				await slide({ sel: $dimText1, state: 'exit', early: true })
-				await removeBlock(1)
-				await pause(0.25)
-				await removeBlock(2)
-				await pause(0.25)
-				await removeBlock(3)
-				await pause(0.25)
-				await removeBlock(4)
 				await pause(1)
+				await slide({ sel: $dimText1, state: 'exit', early: true })
+				await pause(0.25)
+				await removeBlock(1)
+				await pause(0.125)
+				await removeBlock(2)
+				await pause(0.125)
+				await removeBlock(3)
+				await pause(0.125)
+				await removeBlock(4)
+				await pause(0.5)
 				await typer.reveal($dimText2)
 				await drawInFrameLines('.frame__lines__3')
-				await pause(0.5)
+				await pause(0.25)
 				await fadeInColorBlocks('.frame3Color', 500)
 				await pause($dimText2_len)
+				await fadeOutColorBlocks('.frame3Color', 250)
 				await drawOutFrameLines('.frame__lines__3')
-				await fadeOutColorBlocks('.frame3Color', 50)
 				await slide({ sel: $dimText2, state: 'exit', early: true })
 			},
 			// get / set data

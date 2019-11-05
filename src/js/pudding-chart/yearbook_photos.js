@@ -44,7 +44,7 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 		const $topLabelMale = d3.selectAll('.top-label-male')
 		const $bottomLabelFemale = d3.selectAll('.bottom-label-female')
 		const $bottomLabelMale = d3.selectAll('.bottom-label-male')
-		const lenCalc = 3/100
+		const lenCalc = 4/100
 		const $avgGridText1_len = $avgGridText1.text().length * lenCalc
 		const $avgGridText2_len = $avgGridText2.text().length * lenCalc
 
@@ -53,6 +53,7 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 		function hideShowSection() {
 			$sections.style('display', 'none')
 			d3.selectAll('#yearbook_photos').style('display', 'flex')
+			d3.selectAll('.x.axis text').style('opacity', 0)
 		}
 
 		// fades in yearbook photos
@@ -268,7 +269,7 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 					.data(withPos)
 					.enter()
 					.append('div')
-					.attr('class', d => `photoDiv photoDiv-female photoDiv-female-${d.ID}`)
+					.attr('class', d => `photoDiv photoDiv-female photoDiv-female-${d.ID} photoDiv-female-${d.decade}`)
 					.style('left', d => `${d.left}px`)
 					.style('top', d => `${d.top}px`)
 
@@ -281,7 +282,7 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 					.data(withPos)
 					.enter()
 					.append('div')
-					.attr('class', d => `photoDiv photoDiv-male photoDiv-male-${d.ID}`)
+					.attr('class', d => `photoDiv photoDiv-male photoDiv-male-${d.ID} photoDiv-male-${d.decade}`)
 					.style('left', d => `${d.left}px`)
 					.style('top', d => `${d.top}px`)
 
@@ -305,11 +306,11 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 				await pause(1)
 				await typer.reveal($avgGridText1)
 				await drawInLines('.frame__lines__4')
-				await pause(0.5)
+				await pause(0.25)
 				await fadeInColorBlocks('.frame4Color', 500)
 				await pause($avgGridText1_len)
+				await fadeOutColorBlocks('.frame4Color', 250)
 				await drawOutLines('.frame__lines__4')
-				await fadeOutColorBlocks('.frame4Color', 50)
 				await slide({ sel: $avgGridText1, state: 'exit', early: true })
 				await fadeInPhotos()
 				await pause(4)

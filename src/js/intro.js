@@ -4,7 +4,7 @@ import slide from './slide';
 
 const $title = d3.selectAll('.intro__hed')
 const $byline = d3.selectAll('.intro__byline p')
-const lenCalc = 3/100
+const lenCalc = 4/100
 const $method1 = d3.selectAll('#method1 p')
 const $method1_len = $method1.text().length * lenCalc
 const $method2 = d3.selectAll('#method2 p')
@@ -45,7 +45,7 @@ function drawInLines(lineClass) {
         .attrTween('stroke-dasharray', tweenDashIn)
     })
 
-		setTimeout(resolve, 200)
+		setTimeout(resolve, 500)
 	})
 }
 
@@ -99,7 +99,7 @@ function fadeInPhotos() {
 
     photoImg
       .transition()
-      .delay((d, i) => i * 150)
+      .delay((d, i) => i * 250)
       .style('opacity', 1)
       .on('end', resolve)
   })
@@ -127,8 +127,8 @@ async function run() {
 	await drawInLines('.intro__lines')
   await fadeInPhotos()
 	await pause(0.5)
-  await fadeInColorBlocks('.photoColor', 150)
-	await pause(1)
+  await fadeInColorBlocks('.photoColor', 500)
+	//await pause(1)
   await typer.reveal($title)
   await typer.reveal($byline)
 	await pause(3)
@@ -141,19 +141,20 @@ async function run() {
 	await pause(1)
 	await typer.reveal($method1)
 	await drawInLines('.frame__lines__1')
-	await pause(0.5)
+	await pause(0.25)
 	await fadeInColorBlocks('.frame1Color', 500)
 	await pause($method1_len)
+	await fadeOutColorBlocks('.frame1Color', 250)
 	await drawOutLines('.frame__lines__1')
-	await fadeOutColorBlocks('.frame1Color', 50)
 	await slide({ sel: $method1, state: 'exit', early: true })
+	await pause(0.25)
 	await typer.reveal($method2)
 	await drawInLines('.frame__lines__2')
-	await pause(0.5)
+	await pause(0.25)
 	await fadeInColorBlocks('.frame2Color', 500)
 	await pause($method2_len)
+	await fadeOutColorBlocks('.frame2Color', 250)
 	await drawOutLines('.frame__lines__2')
-	await fadeOutColorBlocks('.frame2Color', 50)
 	await slide({ sel: $method2, state: 'exit', early: true })
 
 }

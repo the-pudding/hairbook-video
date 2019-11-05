@@ -19,7 +19,7 @@ const $topLabelDiff = d3.selectAll('.top-label-diff')
 const $bottomLabelDiff = d3.selectAll('.bottom-label-diff')
 const $bottomLabelMale = d3.selectAll('.bottom-label-male')
 const $sections = d3.selectAll('section')
-const lenCalc = 3/100
+const lenCalc = 4/100
 const $trendText1_len = $trendText1.text().length * lenCalc
 const $trendText2_len = $trendText2.text().length * lenCalc
 const $trendNote1_len = $trendNote1.select('p').text().length * lenCalc
@@ -340,7 +340,7 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 			return new Promise((resolve) => {
 				const xTicks = d3.selectAll('.x.axis text').transition()
 					.duration(500)
-					.delay((d, i) => i * 20)
+					.delay((d, i) => i * 50)
 					.ease(d3.easeLinear)
 					.style('opacity', 1)
 					.on('end', resolve)
@@ -349,15 +349,11 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 
 		function fadeOutTicks() {
 			return new Promise((resolve) => {
-				// d3.selectAll('.chart-label').transition()
-				// 	.duration(500)
-				// 	.ease(d3.easeLinear)
-				// 	.style('opacity', 0.1)
 
 				const xTicks = d3.selectAll('.x.axis text').transition()
 					.duration(500)
 					.ease(d3.easeLinear)
-					.style('opacity', 0.5)
+					.style('opacity', 0.3)
 					.on('end', resolve)
 			})
 		}
@@ -443,6 +439,18 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 						.style('opacity', '1')
 						.on('end', resolve)
 				}
+			})
+		}
+
+		function fadeNoteText(sel) {
+			return new Promise((resolve) => {
+				const text = d3.selectAll(`${sel} p`)
+
+				text.transition()
+					.duration(100)
+					.ease(d3.easeLinear)
+					.style('opacity', 1)
+					.on('end', resolve)
 			})
 		}
 
@@ -553,10 +561,10 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 			},
 			run: async function(){
 				await hideShowSection()
-				await pause(1)
+				await pause(0.25)
 				await drawInTrendLine()
 				await revealGenderLabels()
-				await pause(2)
+				await pause(3)
 				await fadeBG('in')
 				await pause(0.25)
 				await typer.reveal($trendText1)
@@ -567,20 +575,23 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				await transitionLines()
 				await fadeInArea()
 				await fadeInTicks()
-				await pause(2)
+				await pause(3)
 				await fadeOutTicks()
 				await fadeLine('Male')
 				await slide({ sel: $trendNote1, state: 'enter', xInput: 30 })
+				await fadeNoteText('#trendNote1')
 				await fadeInNoteImgs('#imgNote1')
 				await pause($trendNote1_len)
 				await slide({ sel: $trendNote1, state: 'enter', early: true, xInput: 2000 })
 				await fadeLine('Female')
 				await slide({ sel: $trendNote2, state: 'enter', xInput: 290 })
+				await fadeNoteText('#trendNote2')
 				await fadeInNoteImgs('#imgNote2')
 				await pause($trendNote2_len)
 				await slide({ sel: $trendNote2, state: 'enter', early: true, xInput: 2000 })
 				await fadeLine('Both')
 				await slide({ sel: $trendNote3, state: 'enter', xInput: 1200 })
+				await fadeNoteText('#trendNote3')
 				await fadeInNoteImgs('#imgNote3')
 				await pause($trendNote3_len)
 				await slide({ sel: $trendNote3, state: 'enter', early: true, xInput: 2000 })
@@ -599,14 +610,17 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				await pause(2)
 				await fadeOutTicks()
 				await slide({ sel: $discrimNote1, state: 'enter', xInput: 360 })
+				await fadeNoteText('#discrimNote1')
 				await fadeInNoteImgs('#imgNote4')
 				await pause($discrimNote1_len)
 				await slide({ sel: $discrimNote1, state: 'enter', early: true, xInput: 2000 })
 				await slide({ sel: $discrimNote2, state: 'enter', xInput: 1160 })
+				await fadeNoteText('#discrimNote2')
 				await fadeInNoteImgs('#imgNote5')
 				await pause($discrimNote2_len)
 				await slide({ sel: $discrimNote2, state: 'enter', early: true, xInput: 2025 })
 				await slide({ sel: $discrimNote3, state: 'enter', xInput: 1460 })
+				await fadeNoteText('#discrimNote3')
 				await fadeInNoteImgs('#imgNote6')
 				await pause($discrimNote3_len)
 				await slide({ sel: $discrimNote3, state: 'enter', early: true, xInput: 2000 })

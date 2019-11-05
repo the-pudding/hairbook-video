@@ -73,11 +73,11 @@ function fadeInPhotos() {
 
 async function runAll() {
   const start = d3.now();
-  //await intro.run()
-  //await chartDimensions.run()
-  //await chartStyles.run()
-  //await chartPhotos.run()
-  //await chartTrends.run()
+  await intro.run()
+  await chartDimensions.run()
+  await chartStyles.run()
+  await chartPhotos.run()
+  await chartTrends.run()
   await outro.run()
   const end = d3.now();
   const diff = end - start;
