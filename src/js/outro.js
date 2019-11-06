@@ -3,6 +3,7 @@ import typer from './typer';
 import slide from './slide';
 
 const $sections = d3.selectAll('section')
+const $outroSection = d3.selectAll('#outro')
 const $outro1 = d3.selectAll('#outro1 p')
 const $outro2 = d3.selectAll('#outro2 p')
 const lenCalc = 4/100
@@ -12,6 +13,8 @@ const $outro2_len = $outro2.text().length * lenCalc
 // helper functions
 function hideShowSection() {
 	$sections.style('display', 'none')
+	d3.selectAll('#yearbook_photos').style('display', 'flex')
+	d3.selectAll('#trendlines').style('display', 'flex')
 	d3.selectAll('#outro').style('display', 'flex')
 }
 
@@ -93,25 +96,16 @@ function fadeOutColorBlocks(blockClass, del) {
 
 async function run() {
 	await hideShowSection()
-	await typer.prepare($outro1)
   await typer.prepare($outro2)
 	await pause(1)
-	await typer.reveal($outro1)
-	await drawInLines('.frame__lines__2')
-	await pause(0.25)
-	await fadeInColorBlocks('.frame2Color', 500)
-	await pause($outro1_len)
-	await fadeOutColorBlocks('.frame2Color', 250)
-	await drawOutLines('.frame__lines__2')
-	await slide({ sel: $outro1, state: 'exit', early: true })
-	await pause(1)
 	await typer.reveal($outro2)
-	await drawInLines('.frame__lines__1')
-	await pause(0.25)
-	await fadeInColorBlocks('.frame1Color', 500)
+	// await drawInLines('.frame__lines__1')
+	// await pause(0.25)
+	// await fadeInColorBlocks('.frame1Color', 500)
 	await pause($outro2_len)
-	await fadeOutColorBlocks('.frame1Color', 250)
-	await drawOutLines('.frame__lines__1')
+	await pause(1)
+	// await fadeOutColorBlocks('.frame1Color', 250)
+	// await drawOutLines('.frame__lines__1')
 	await slide({ sel: $outro2, state: 'exit', early: true })
 }
 

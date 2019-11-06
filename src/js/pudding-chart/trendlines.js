@@ -28,6 +28,8 @@ const $trendNote3_len = $trendNote3.select('p').text().length * lenCalc
 const $discrimNote1_len = $discrimNote1.select('p').text().length * lenCalc
 const $discrimNote2_len = $discrimNote2.select('p').text().length * lenCalc
 const $discrimNote3_len = $discrimNote3.select('p').text().length * lenCalc
+const $outro1 = d3.selectAll('#outro1 p')
+const $outro1_len = $outro1.text().length * lenCalc
 
 d3.selection.prototype.puddingTrendLines = function init(options) {
 	function createChart(el) {
@@ -229,10 +231,16 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 
 		function fadeToOutro() {
 			return new Promise((resolve) => {
-				d3.selectAll('#yearbook_photos, #trendlines').transition()
+				d3.selectAll('#trendlines, .chart-label').transition()
 					.duration(750)
 					.ease(d3.easeLinear)
 					.style('opacity', 0)
+
+				d3.selectAll('.photoDiv').transition()
+					.duration(1500)
+					.delay((d, i) => i * 20)
+					.ease(d3.easeLinear)
+					.style('left', d => `-3000px`)
 					.on('end', resolve)
 			})
 		}
@@ -282,6 +290,16 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 					.duration(500)
 					.ease(d3.easeLinear)
 					.style('top', '580px')
+					.on('end', resolve)
+			})
+		}
+
+		function fadeLabels() {
+			return new Promise((resolve) => {
+				d3.selectAll('.chart-label').transition()
+					.duration(500)
+					.ease(d3.easeLinear)
+					.style('opacity', '0.1')
 					.on('end', resolve)
 			})
 		}
@@ -473,6 +491,7 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				structureData()
 				typer.prepare($trendText1);
 				typer.prepare($trendText2);
+				typer.prepare($outro1);
 
 				width = $sel.node().offsetWidth - marginLeft - marginRight;
 				height = $sel.node().offsetHeight - marginTop - marginBottom;
@@ -619,14 +638,20 @@ d3.selection.prototype.puddingTrendLines = function init(options) {
 				await fadeInNoteImgs('#imgNote5')
 				await pause($discrimNote2_len)
 				await slide({ sel: $discrimNote2, state: 'enter', early: true, xInput: 2025 })
-				await slide({ sel: $discrimNote3, state: 'enter', xInput: 1460 })
+				await slide({ sel: $discrimNote3, state: 'enter', xInput: 1485 })
 				await fadeNoteText('#discrimNote3')
 				await fadeInNoteImgs('#imgNote6')
 				await pause($discrimNote3_len)
 				await slide({ sel: $discrimNote3, state: 'enter', early: true, xInput: 2000 })
-				await fadeBG('out')
-				await fadeInTicks()
-				await pause(2)
+				// await fadeBG('out')
+				// await fadeInTicks()
+				// await pause(2)
+				//await fadeLabels()
+				await fadeBG('in')
+				await pause(0.5)
+				await typer.reveal($outro1)
+				await pause($outro1_len)
+				await slide({ sel: $outro1, state: 'exit', early: true })
 				await fadeToOutro()
 			},
 			// get / set data

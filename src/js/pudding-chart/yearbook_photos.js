@@ -127,21 +127,21 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 					.style('opacity', 0)
 
 				$photoContainerFemale.transition()
-				 	.duration(500)
+				 	.duration(750)
 					.ease(d3.easeLinear)
 					.style('padding', '0')
 					.style('top', '35px')
 					.style('height', '320px')
 
 				$photoContainerMale.transition()
-				 	.duration(500)
+				 	.duration(750)
 					.ease(d3.easeLinear)
 					.style('padding', '0')
 					.style('bottom', '35px')
 					.style('height', '320px')
 
 				d3.selectAll('.photoDiv,.female-photo,.male-photo').transition()
-					.duration(500)
+					.duration(750)
 					.ease(d3.easeLinear)
 					.style('width', '79px')
 					.style('height', '79px')
@@ -149,7 +149,7 @@ d3.selection.prototype.puddingYearbookPhotos = function init(options) {
 					.style('top', d => `${d.topEnd}px`)
 
 				d3.selectAll('.female-photo img,.male-photo img').transition()
-					.duration(500)
+					.duration(750)
 					.ease(d3.easeLinear)
 					.style('width', '74px')
 					.style('height', '74px')
