@@ -12,7 +12,7 @@
 		"cli-error-notifier": "2.1.0",
 		"d3-interpolate-path": "^2.1.1",
 		"fs": "0.0.1-security",
-		"lodash": "^4.17.15",
+		"lodash": "^4.17.21",
 		"lodash.debounce": "4.0.8",
 		"nouislider": "14.0.2",
 		"rimraf": "2.6.3",
